@@ -1,5 +1,4 @@
-const toTimestamp = (a, b) => a * 3.6e6 + b * 6e4;
-const modulo = (x, m) => (x % m + m) % m;
+const toTimestamp = (a, b) => a * 3.6e6 + b * 6e4; // Convert hours and minutes to milliseconds
 
 export class Clock {
   constructor(num1, num2 = 0) {
@@ -21,10 +20,9 @@ export class Clock {
     return new Clock(this.num1, this.num2 - mins);
   }
 
-  equals({a, b}) {
+  equals(obj) {
 
-    modulo(this.num1, 24) === modulo(a, 24)
-      && modulo(this.num2, 60) === modulo(b, 60)? 
+    return this.toString() === obj.toString() ? 
       true: false;
   }
 }
