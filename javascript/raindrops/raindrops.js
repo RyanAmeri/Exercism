@@ -6,17 +6,10 @@ const values = {
 
 
 export const convert = (num) => {
-  let factors = [];
-  for (let i = num; i > 0; i--){
-    if (num % i === 0)
-      factors.push(i);
-  }
-
   let str = "";
   for (let value in values){
-    if (factors.includes(parseInt(value)))
+    if ( num % (parseInt(value)) === 0)
       str += values[value];
   }
-
   return str ? str : num.toString();
 };
