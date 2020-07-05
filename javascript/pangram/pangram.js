@@ -1,25 +1,24 @@
-const alphabet = new Map([
-  ['a',], ['b',], ['c',], ['d',], ['e',], ['f',], ['g',], ['h',], ['i',], ['j',], ['k',], ['l',], ['m',], ['n',], ['o',], ['p',], ['q',], ['r',], ['s',], ['t',], ['u',], ['v',], ['w',], ['x',], ['y',], ['z',],
-]);
 export const isPangram = (inputString) => {
-   let panagram = true;
-  //Initialize map to 0
-  for (let key of alphabet.keys()) {
-    alphabet.set(key, 0);
+   const alphabet = new Map();
+   
+   //Initialize map to 0
+  for (let i = 97; i<= 122; i++) {
+    alphabet.set(String.fromCharCode(i), 0);
   }
 
+  //increment the map value for every letter in the inputString
   [...inputString.toLowerCase()].forEach((letter) => {
     if (alphabet.has(letter))
         alphabet.set(letter, alphabet.get(letter) +1)
       
   });
 
+  //If any value in Map is 0, return false, else return true
   for (let value of alphabet.values()) {
     if (value === 0) {
-      panagram = false;
-      break;
+      return false;
     }
   }
-  return panagram;
+  return true;
 };
 
