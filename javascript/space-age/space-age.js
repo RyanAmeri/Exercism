@@ -10,15 +10,7 @@ const orbitalValues = new Map([
 ]);
 
 export const age = (planet, seconds) => {
-  const personAge = new Date(Number(seconds) * 1000);
-  const EarthAge = personAge.getFullYear() - new Date(0).getFullYear() 
-    + fractionOfYear(personAge);
+  const yearInSeconds = 3.15576e7;
+  const EarthAge = seconds / yearInSeconds;
   return Math.round(((EarthAge / orbitalValues.get(planet)) + Number.EPSILON) * 100) / 100; 
 };
-
-const fractionOfYear = (dateObj) => {
-  const yearInSeconds = 3.15576e10;
-  const firstDayOfYear = new Date(dateObj.getFullYear(), 0, 1);
-  return (dateObj - firstDayOfYear) / yearInSeconds;
-
-}
