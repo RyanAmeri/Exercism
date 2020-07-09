@@ -1,8 +1,14 @@
-//
-// This is only a SKELETON file for the 'Perfect Numbers' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
-export const classify = () => {
-  throw new Error("Remove this statement and implement this function");
+export const classify = (inputNum) => {
+  if (inputNum < 1)
+    throw new Error("Classification is only possible for natural numbers.");
+  const factors = [];
+  for (let i = 1; i < inputNum; i++) {
+    if (inputNum % i === 0) {
+      factors.push(i)
+    }
+  }
+  const aliquot = factors.reduce((a, b) => a + b, 0);
+  console.log(aliquot);
+  return aliquot === inputNum ? "perfect" 
+    : aliquot > inputNum ? "abundant" : "deficient";
 };
