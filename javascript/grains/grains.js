@@ -5,9 +5,5 @@ export const square = (inputNum) => {
 };
 
 export const total = () => {
-  let total = 0n;
-  for (let i = 1; i <= 64; i++){
-    total += square(i);
-  }
-  return total;
+  return square(64) * 2n - 1n;
 };
