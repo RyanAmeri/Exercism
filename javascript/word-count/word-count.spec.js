@@ -100,7 +100,7 @@ describe('countWords', () => {
     );
   });
 
-  xtest('substrings from the beginning', () => {
+  test('substrings from the beginning', () => {
     const expectedCounts = {
       joe: 1,
       'can\'t': 1,
@@ -116,7 +116,7 @@ describe('countWords', () => {
     );
   });
 
-  xtest('multiple spaces not detected as a word', () => {
+  test('multiple spaces not detected as a word', () => {
     const expectedCounts = {
       multiple: 1,
       whitespaces: 1
@@ -124,7 +124,7 @@ describe('countWords', () => {
     expect(countWords(' multiple   whitespaces')).toEqual(expectedCounts);
   });
 
-  xtest('alternating word separators not detected as a word', () => {
+  test('alternating word separators not detected as a word', () => {
     const expectedCounts = {
       one: 1,
       two: 1,
