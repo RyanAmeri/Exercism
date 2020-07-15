@@ -24,15 +24,17 @@ export class Triplet {
   static where({ minFactor = 1, maxFactor, sum }) {
     const triplets = [];
     for (let i = minFactor; i <= maxFactor; i++) {
-      for (let j = minFactor; j <= maxFactor; j++) {
-        for (let k = minFactor; k <= maxFactor; k++) {
+      for (let j = i + 1; j <= maxFactor; j++) {
+        for (let k = j + 1; k <= maxFactor; k++) {
           let tmpTriangle = new Triplet(i, j, k);
           if (tmpTriangle.isPythagorean()) {
             if (sum) {
-              if (i + j + k === sum) {
+              // If sum exists, you have to check that the sum matches
+              if (tmpTriangle.sum() === sum) {
                 triplets.push(tmpTriangle);
               }
             } else {
+              //If sum is undefined, then just add the triangle
               triplets.push(tmpTriangle);
             }
           }
