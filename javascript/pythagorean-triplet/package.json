@@ -3,7 +3,6 @@
   "description": "Exercism exercises in Javascript.",
   "author": "Katrina Owen",
   "private": true,
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/exercism/javascript"

@@ -1,26 +1,44 @@
-//
-// This is only a SKELETON file for the 'Pythagorean Triplet' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export class Triplet {
-  constructor() {
-    throw new Error("Remove this statement and implement this function");
+  constructor(a, b, c) {
+    this.a = a;
+    this.b = b;
+    this.c = c;
   }
 
   sum() {
-    throw new Error("Remove this statement and implement this function");
+    return this.a + this.b + this.c;
   }
 
   product() {
-    throw new Error("Remove this statement and implement this function");
+    return this.a * this.b * this.c;
   }
 
   isPythagorean() {
-    throw new Error("Remove this statement and implement this function");
+    return this.a ** 2 + this.b ** 2 === this.c ** 2 &&
+      this.a < this.b &&
+      this.b < this.c
+      ? true
+      : false;
   }
 
-  static where() {
-    throw new Error("Remove this statement and implement this function");
+  static where({ minFactor = 1, maxFactor, sum }) {
+    const triplets = [];
+    for (let i = minFactor; i <= maxFactor; i++) {
+      for (let j = minFactor; j <= maxFactor; j++) {
+        for (let k = minFactor; k <= maxFactor; k++) {
+          let tmpTriangle = new Triplet(i, j, k);
+          if (tmpTriangle.isPythagorean()) {
+            if (sum) {
+              if (i + j + k === sum) {
+                triplets.push(tmpTriangle);
+              }
+            } else {
+              triplets.push(tmpTriangle);
+            }
+          }
+        }
+      }
+    }
+    return triplets;
   }
 }
