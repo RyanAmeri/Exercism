@@ -1,20 +1,13 @@
 export class Squares {
-  #num;
   #sumOfSquares;
   #squareOfSum;
   constructor(inputNum) {
-    this.#num = inputNum;
-    const arrayOfNumbers = [];
-    for (let i = 1; i <= this.#num; i++) {
-      arrayOfNumbers[i] = i;
-    }
+    const arrayOfNumbers = Array(inputNum).fill(inputNum);
     this.#squareOfSum =
-      arrayOfNumbers.reduce(
-        (accumulator, currentValue) => accumulator + currentValue,
-        0
-      ) ** 2;
+      arrayOfNumbers.reduce((accum, value, index) => accum + (index + 1), 0) **
+      2;
     this.#sumOfSquares = arrayOfNumbers.reduce(
-      (accumulator, currentValue) => accumulator + currentValue ** 2,
+      (accum, value, index) => accum + (index + 1) ** 2,
       0
     );
   }
@@ -31,3 +24,12 @@ export class Squares {
     return this.#squareOfSum - this.#sumOfSquares;
   }
 }
+/* 
+Looking at ksyu's solution, this algorithm is certainly more efficient: 
+let x = (n * (n + 1)) / 2;
+squareOfSums = x * x;
+sumOfSquares = (n * (n + 1) * (2 * n + 1)) / 6;
+
+But I thought this was a good exercise for me to practice array.prototype.reduce(), a method I always struggle with, so I kept my original solution. 
+
+*/
