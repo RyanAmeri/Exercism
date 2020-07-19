@@ -3,17 +3,26 @@ export class Palindromes {
     if (minFactor > maxFactor) {
       throw new Error("min must be <= max");
     }
-    const palinds = getPalinds(minFactor, maxFactor);
-    this.largest = { value: null, factors: [] };
-    this.smallest = { value: null, factors: [] };
-    if (palinds.length > 0) {
+    this.smallest = {
+      value: null,
+      factors: [],
+    };
+    this.largest = {
+      value: null,
+      factors: [],
+    };
+    const SMALL = getSmallestPalind(minFactor, maxFactor);
+    const LARGE = getLargestPalind(minFactor, maxFactor);
+    if (SMALL) {
       this.smallest = {
-        value: palinds[0],
-        factors: getFactors(palinds[0], minFactor, maxFactor),
+        value: SMALL,
+        factors: getFactors(SMALL, minFactor, maxFactor),
       };
+    }
+    if (LARGE) {
       this.largest = {
-        value: palinds[palinds.length - 1],
-        factors: getFactors(palinds[palinds.length - 1], minFactor, maxFactor),
+        value: LARGE,
+        factors: getFactors(LARGE, minFactor, maxFactor),
       };
     }
     return this;
@@ -22,7 +31,7 @@ export class Palindromes {
 
 function getSmallestPalind(min, max) {
   for (let i = min; i <= max; i++) {
-    for (let j = min; j <= max; j++) {
+    for (let j = i; j <= max; j++) {
       if (i * j === reverseNum(i * j)) {
         return i * j;
       }
@@ -30,17 +39,14 @@ function getSmallestPalind(min, max) {
   }
 }
 
-function getPalinds(min, max) {
-  const palinds = [];
-  for (let i = min; i <= max; i++) {
-    for (let j = min; j <= max; j++) {
+function getLargestPalind(min, max) {
+  for (let i = max; i >= max - 100; i--) {
+    for (let j = i; j >= max - 100; j--) {
       if (i * j === reverseNum(i * j)) {
-        palinds.push(i * j);
+        return i * j;
       }
     }
   }
-  palinds.sort((a, b) => a - b);
-  return palinds;
 }
 
 function getFactors(num, min, max) {
@@ -64,7 +70,3 @@ function reverseNum(num) {
     parseFloat(num.toString().split("").reverse().join("")) * Math.sign(num)
   );
 }
-// const palindromes = Palindromes.generate({ maxFactor: 12, minFactor: 10 });
-// console.table(palindromes);
-
-//console.log(reverseNum(12345));
