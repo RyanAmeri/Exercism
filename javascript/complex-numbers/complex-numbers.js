@@ -1,46 +1,55 @@
-//
-// This is only a SKELETON file for the 'Complex Numbers' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export class ComplexNumber {
-  constructor() {
-    throw new Error("Remove this statement and implement this function");
+  #a;
+  #b;
+  constructor(r, i) {
+    this.#a = r;
+    this.#b = i;
   }
 
   get real() {
-    throw new Error("Remove this statement and implement this function");
+    return this.#a;
   }
 
   get imag() {
-    throw new Error("Remove this statement and implement this function");
+    return this.#b;
   }
 
-  add() {
-    throw new Error("Remove this statement and implement this function");
+  add(num2) {
+    return new ComplexNumber(this.real + num2.real, this.imag + num2.imag);
   }
 
-  sub() {
-    throw new Error("Remove this statement and implement this function");
+  sub(num2) {
+    return new ComplexNumber(this.real - num2.real, this.imag - num2.imag);
   }
 
-  div() {
-    throw new Error("Remove this statement and implement this function");
+  div(num2) {
+    return new ComplexNumber(
+      (this.real * num2.real + this.imag * num2.imag) /
+        (num2.real ** 2 + num2.imag ** 2),
+      (this.imag * num2.real - this.real * num2.imag) /
+        (num2.real ** 2 + num2.imag ** 2)
+    );
   }
 
-  mul() {
-    throw new Error("Remove this statement and implement this function");
+  mul(num2) {
+    return new ComplexNumber(
+      this.real * num2.real - this.imag * num2.imag,
+      this.imag * num2.real + this.real * num2.imag
+    );
   }
 
-  abs() {
-    throw new Error("Remove this statement and implement this function");
+  get abs() {
+    return Math.abs(Math.sqrt(this.real ** 2 + this.imag ** 2));
   }
 
-  conj() {
-    throw new Error("Remove this statement and implement this function");
+  get conj() {
+    return new ComplexNumber(this.real, this.imag * -1);
   }
 
-  exp() {
-    throw new Error("Remove this statement and implement this function");
+  get exp() {
+    return new ComplexNumber(
+      Math.exp(this.real) * Math.cos(this.imag),
+      Math.exp(this.real) * Math.sin(this.imag)
+    );
   }
 }
