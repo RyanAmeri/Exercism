@@ -1,18 +1,23 @@
-//
-// This is only a SKELETON file for the 'Matrix' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
-
 export class Matrix {
-  constructor() {
-    throw new Error("Remove this statement and implement this function");
+  #rows = [];
+  #columns = [];
+  constructor(input) {
+    this.#rows = input.split("\n").map((row) => {
+      return row.split(" ").map((item) => parseInt(item));
+    });
+    this.#rows.forEach((row) => {
+      row.forEach((item, index) => {
+        this.#columns[index] = this.#columns[index] ?? [];
+        this.#columns[index].push(item);
+      });
+    });
   }
 
   get rows() {
-    throw new Error("Remove this statement and implement this function");
+    return this.#rows;
   }
 
   get columns() {
-    throw new Error("Remove this statement and implement this function");
+    return this.#columns;
   }
 }
